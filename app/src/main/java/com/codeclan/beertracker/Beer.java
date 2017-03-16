@@ -12,15 +12,15 @@ public class Beer {
     String type;
     String description;
     HashMap<String,String> details;
-    HashMap<String,Integer> ingredinets;
+    HashMap<String,Integer> ingredients;
     HashMap<String,Integer> steps;
 
-    public Beer(String name, String type, String description, HashMap<String, String> details, HashMap<String, Integer> ingredinets, HashMap<String, Integer> steps) {
+    public Beer(String name, String type, String description, HashMap<String, String> details, HashMap<String, Integer> ingredients, HashMap<String, Integer> steps) {
         this.name = name;
         this.type = type;
         this.description = description;
         this.details = details;
-        this.ingredinets = ingredinets;
+        this.ingredients = ingredients;
         this.steps = steps;
     }
 
@@ -56,12 +56,12 @@ public class Beer {
         this.details = details;
     }
 
-    public HashMap<String, Integer> getIngredinets() {
-        return ingredinets;
+    public HashMap<String, Integer> getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredinets(HashMap<String, Integer> ingredinets) {
-        this.ingredinets = ingredinets;
+    public void setIngredients(HashMap<String, Integer> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public HashMap<String, Integer> getSteps() {
