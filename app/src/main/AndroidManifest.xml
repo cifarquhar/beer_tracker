@@ -15,7 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BeerActivity"></activity>
+        <activity
+            android:name=".BeerActivity"
+            android:label="@string/title_activity_beer"
+            android:parentActivityName=".ListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.codeclan.beertracker.ListActivity" />
+        </activity>
     </application>
 
 </manifest>
