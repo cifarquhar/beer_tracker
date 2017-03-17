@@ -71,4 +71,25 @@ public class Beer {
     public void setSteps(HashMap<String, Integer> steps) {
         this.steps = steps;
     }
+
+
+    public String mapSSHash(HashMap<String, String> hash){
+        String outputString = "";
+        for (String term: hash.keySet()){
+            String value = hash.get(term);
+            String lineToAdd =  "\"" + term + "\"" + ": " + value + "," + "\n";
+            outputString = outputString + lineToAdd;
+        }
+        return outputString;
+    }
+
+    public String mapSIHash(HashMap<String, Integer> hash){
+        String outputString = "";
+        for (String term: hash.keySet()){
+            Integer value = hash.get(term);
+            String lineToAdd =  "\"" + term + "\"" + ": " + value.toString() + "," + "\n";
+            outputString = outputString + lineToAdd;
+        }
+        return outputString;
+    }
 }

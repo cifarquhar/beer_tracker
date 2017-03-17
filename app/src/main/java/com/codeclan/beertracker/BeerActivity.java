@@ -1,5 +1,6 @@
 package com.codeclan.beertracker;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+
+import java.util.HashMap;
 
 public class BeerActivity extends AppCompatActivity {
 
@@ -63,6 +66,14 @@ public class BeerActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        HashMap<String,String>  beerDetails = (HashMap<String,String>) extras.get("selectedBeerDetails");
+        HashMap<String,Integer> beerIngredients = (HashMap<String,Integer>) extras.get("selectedBeerIngredients");
+        HashMap<String,Integer> beerSteps = (HashMap<String,Integer>) extras.get("selectedBeerSteps");
+
+
 
     }
 

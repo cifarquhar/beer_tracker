@@ -33,6 +33,7 @@ public class BeerAdapter extends ArrayAdapter<Beer> {
 
         TextView name = (TextView) listItemView.findViewById(R.id.name);
         name.setText(currentBeer.getName());
+        name.setTag(currentBeer);
 
         TextView description = (TextView) listItemView.findViewById(R.id.description);
         description.setText(currentBeer.getDescription());
