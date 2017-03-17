@@ -33,9 +33,10 @@ public class ListActivity extends AppCompatActivity {
         Beer selectedBeer = (Beer) textView.getTag();
 
         Intent intent = new Intent(this, BeerActivity.class);
-        intent.putExtra("beerDetails", selectedBeer.getDetails());
-        intent.putExtra("beerIngredients", selectedBeer.getIngredients());
-        intent.putExtra("beerSteps",selectedBeer.getSteps());
+        intent.putExtra("beerName",selectedBeer.getName());
+//        intent.putExtra("beerDetails", selectedBeer.getDetails());
+//        intent.putExtra("beerIngredients", selectedBeer.getIngredients());
+//        intent.putExtra("beerSteps",selectedBeer.getSteps());
 
         startActivity(intent);
 

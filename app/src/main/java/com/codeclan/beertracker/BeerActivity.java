@@ -69,9 +69,10 @@ public class BeerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        HashMap<String,String>  beerDetails = (HashMap<String,String>) extras.get("selectedBeerDetails");
-        HashMap<String,Integer> beerIngredients = (HashMap<String,Integer>) extras.get("selectedBeerIngredients");
-        HashMap<String,Integer> beerSteps = (HashMap<String,Integer>) extras.get("selectedBeerSteps");
+        String beerName = extras.getString("beerName");
+//        HashMap<String,String>  beerDetails = (HashMap<String,String>) extras.get("selectedBeerDetails");
+//        HashMap<String,Integer> beerIngredients = (HashMap<String,Integer>) extras.get("selectedBeerIngredients");
+//        HashMap<String,Integer> beerSteps = (HashMap<String,Integer>) extras.get("selectedBeerSteps");
 
 
 
