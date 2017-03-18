@@ -128,11 +128,6 @@ public class BeerActivity extends AppCompatActivity {
             super(fm);
         }
 
-//        Intent intent = getIntent();
-//        Bundle extras = intent.getExtras();
-//        String details = extras.getString("beerDetails");
-//        String ingredients = extras.getString("beerIngredients");
-//        String steps = extras.getString("beerSteps");
 
 
         @Override
@@ -140,34 +135,24 @@ public class BeerActivity extends AppCompatActivity {
 
 
 
-
-
-
             switch (position) {
             case 0:
-//                Intent detailIntent = getIntent();
-//                Bundle detailExtras = detailIntent.getExtras();
-//                String details = detailExtras.getString("beerDetails");
                 Bundle detailsBundle = new Bundle();
                 detailsBundle.putString(DETAILS_FRAGMENT_KEY, "details");
                 DetailsActivity beerDetails = new DetailsActivity();
                 beerDetails.setArguments(detailsBundle);
                 return beerDetails;
             case 1:
-//                Intent ingredientIntent = getIntent();
-//                Bundle ingredientExtras = ingredientIntent.getExtras();
-//                String ingredients = ingredientExtras.getString("beerIngredients");
                 Bundle ingredientsBundle = new Bundle();
                 ingredientsBundle.putString(INGREDIENTS_FRAGMENT_KEY, "ingredients");
                 IngredientsActivity beerIngredients = new IngredientsActivity();
+                beerIngredients.setArguments(ingredientsBundle);
                 return beerIngredients;
             case 2:
-//                Intent stepIntent = getIntent();
-//                Bundle stepExtras = stepIntent.getExtras();
-//                String steps = stepExtras.getString("beerSteps");
                 Bundle stepsBundle = new Bundle();
                 stepsBundle.putString(STEPS_FRAGMENT_KEY, "steps");
                 StepsActivity beerSteps = new StepsActivity();
+                beerSteps.setArguments(stepsBundle);
                 return beerSteps;
             default:
                 return null;
