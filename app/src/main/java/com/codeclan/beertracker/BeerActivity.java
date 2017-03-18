@@ -24,6 +24,8 @@ import java.util.HashMap;
 
 public class BeerActivity extends AppCompatActivity {
 
+    public static final String DETAILS_FRAGMENT_KEY = "Details Fragment";
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -57,6 +59,16 @@ public class BeerActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+    }
+
+
+//    private Fragment createCustomFragment(){
+//        Bundle bundle = new Bundle();
+//        bundle.putString(DETAILS_FRAGMENT_KEY, "This is a test");
+//
+//    }
+
+
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -67,16 +79,11 @@ public class BeerActivity extends AppCompatActivity {
 //            }
 //        });
 
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        String beerName = extras.getString("beerName");
-//        HashMap<String,String>  beerDetails = (HashMap<String,String>) extras.get("selectedBeerDetails");
-//        HashMap<String,Integer> beerIngredients = (HashMap<String,Integer>) extras.get("selectedBeerIngredients");
-//        HashMap<String,Integer> beerSteps = (HashMap<String,Integer>) extras.get("selectedBeerSteps");
 
 
 
-    }
+
+
 
 
 //    @Override
@@ -117,7 +124,10 @@ public class BeerActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
         switch (position) {
             case 0:
+                Bundle bundle = new Bundle();
+                bundle.putString(DETAILS_FRAGMENT_KEY, "This is a test");
                 DetailsActivity details = new DetailsActivity();
+                details.setArguments(bundle);
                 return details;
             case 1:
                 IngredientsActivity ingredients = new IngredientsActivity();

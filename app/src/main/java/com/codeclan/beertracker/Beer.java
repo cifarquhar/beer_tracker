@@ -83,10 +83,30 @@ public class Beer {
         return outputString;
     }
 
-    public String mapSIHash(HashMap<String, Integer> hash){
+    public String parseDetailsHash(){
         String outputString = "";
-        for (String term: hash.keySet()){
-            Integer value = hash.get(term);
+        for (String term: details.keySet()){
+            String value = details.get(term);
+            String lineToAdd =  "\"" + term + "\"" + ": " + value + "," + "\n";
+            outputString = outputString + lineToAdd;
+        }
+        return outputString;
+    }
+
+    public String parseIngredientsHash(){
+        String outputString = "";
+        for (String term: ingredients.keySet()){
+            Integer value = ingredients.get(term);
+            String lineToAdd =  "\"" + term + "\"" + ": " + value.toString() + "," + "\n";
+            outputString = outputString + lineToAdd;
+        }
+        return outputString;
+    }
+
+    public String parseStepsHash(){
+        String outputString = "";
+        for (String term: steps.keySet()){
+            Integer value = steps.get(term);
             String lineToAdd =  "\"" + term + "\"" + ": " + value.toString() + "," + "\n";
             outputString = outputString + lineToAdd;
         }
