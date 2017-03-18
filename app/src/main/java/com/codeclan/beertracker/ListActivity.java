@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,6 +28,12 @@ public class ListActivity extends AppCompatActivity {
         listview.setAdapter(beerAdapter);
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_beer, menu);
+        return true;
     }
 
     public void itemClicked(View item) {
