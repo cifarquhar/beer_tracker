@@ -25,6 +25,8 @@ import java.util.HashMap;
 public class BeerActivity extends AppCompatActivity {
 
     public static final String DETAILS_FRAGMENT_KEY = "Details Fragment";
+    public static final String INGREDIENTS_FRAGMENT_KEY = "Ingredients Fragment";
+    public static final String STEPS_FRAGMENT_KEY = "Steps Fragment";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -59,6 +61,9 @@ public class BeerActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+
+
     }
 
 
@@ -116,25 +121,54 @@ public class BeerActivity extends AppCompatActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+
+
+
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
+//        Intent intent = getIntent();
+//        Bundle extras = intent.getExtras();
+//        String details = extras.getString("beerDetails");
+//        String ingredients = extras.getString("beerIngredients");
+//        String steps = extras.getString("beerSteps");
+
+
         @Override
         public Fragment getItem(int position) {
-        switch (position) {
+
+
+
+
+
+
+            switch (position) {
             case 0:
-                Bundle bundle = new Bundle();
-                bundle.putString(DETAILS_FRAGMENT_KEY, "This is a test");
-                DetailsActivity details = new DetailsActivity();
-                details.setArguments(bundle);
-                return details;
+//                Intent detailIntent = getIntent();
+//                Bundle detailExtras = detailIntent.getExtras();
+//                String details = detailExtras.getString("beerDetails");
+                Bundle detailsBundle = new Bundle();
+                detailsBundle.putString(DETAILS_FRAGMENT_KEY, "details");
+                DetailsActivity beerDetails = new DetailsActivity();
+                beerDetails.setArguments(detailsBundle);
+                return beerDetails;
             case 1:
-                IngredientsActivity ingredients = new IngredientsActivity();
-                return ingredients;
+//                Intent ingredientIntent = getIntent();
+//                Bundle ingredientExtras = ingredientIntent.getExtras();
+//                String ingredients = ingredientExtras.getString("beerIngredients");
+                Bundle ingredientsBundle = new Bundle();
+                ingredientsBundle.putString(INGREDIENTS_FRAGMENT_KEY, "ingredients");
+                IngredientsActivity beerIngredients = new IngredientsActivity();
+                return beerIngredients;
             case 2:
-                StepsActivity steps = new StepsActivity();
-                return steps;
+//                Intent stepIntent = getIntent();
+//                Bundle stepExtras = stepIntent.getExtras();
+//                String steps = stepExtras.getString("beerSteps");
+                Bundle stepsBundle = new Bundle();
+                stepsBundle.putString(STEPS_FRAGMENT_KEY, "steps");
+                StepsActivity beerSteps = new StepsActivity();
+                return beerSteps;
             default:
                 return null;
         }

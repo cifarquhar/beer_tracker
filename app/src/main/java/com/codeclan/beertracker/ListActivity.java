@@ -31,13 +31,15 @@ public class ListActivity extends AppCompatActivity {
     public void itemClicked(View item) {
         TextView textView = (TextView) item;
         Beer selectedBeer = (Beer) textView.getTag();
+
         String selectedBeerDetails = selectedBeer.parseDetailsHash();
+        String selectedBeerIngredients = selectedBeer.parseIngredientsHash();
+        String selectedBeerSteps = selectedBeer.parseStepsHash();
 
         Intent intent = new Intent(this, BeerActivity.class);
         intent.putExtra("beerDetails",selectedBeerDetails);
-//        intent.putExtra("beerDetails", selectedBeer.getDetails());
-//        intent.putExtra("beerIngredients", selectedBeer.getIngredients());
-//        intent.putExtra("beerSteps",selectedBeer.getSteps());
+        intent.putExtra("beerIngredients",selectedBeerIngredients);
+        intent.putExtra("beerSteps",selectedBeerSteps);
 
         startActivity(intent);
 
