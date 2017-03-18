@@ -15,8 +15,6 @@ import static com.codeclan.beertracker.BeerActivity.DETAILS_FRAGMENT_KEY;
 
 public class DetailsActivity extends Fragment{
 
-//    TextView beerDetails;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,19 +31,5 @@ public class DetailsActivity extends Fragment{
         return rootView;
     }
 
-//    @Override
-//    public void onActivityCreated(Bundle savedInstanceState){
-//        super.onActivityCreated(savedInstanceState);
-//        Bundle bundle = getArguments();
-//        if (bundle != null) {
-//            String stringToPrint = bundle.getString(DETAILS_FRAGMENT_KEY);
-//            setText(stringToPrint);
-//    }
-//    }
-//
-//    public void setText(String stringToDisplay) {
-//        TextView view = (TextView) getView().findViewById(R.id.section_label);
-//        view.setText(stringToDisplay);
-//    }
 
 }
