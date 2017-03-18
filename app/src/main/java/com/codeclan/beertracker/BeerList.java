@@ -30,7 +30,7 @@ public class BeerList {
         HashMap<String,Integer> steps2 = new HashMap<String, Integer>();
         steps2.put("Mash time",70);
         HashMap<String,Integer> steps3 = new HashMap<String, Integer>();
-        steps3.put("carapils",250);
+        steps3.put("fermentation",6);
         beerList.add(new Beer("Beer1","IPA","Hoppy",details1,ingredients1,steps1));
         beerList.add(new Beer("Beer2","Lager","Gassy",details2,ingredients2,steps2));
         beerList.add(new Beer("Beer3","Stout","Dark",details3,ingredients3,steps3));
