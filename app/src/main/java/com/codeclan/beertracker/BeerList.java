@@ -39,4 +39,8 @@ public class BeerList {
     public ArrayList<Beer> getBeerList() {
         return new ArrayList<Beer>(beerList);
     }
+
+//    public ArrayList<Beer> addToBeerList(Beer beer){
+//
+//    }
 }

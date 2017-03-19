@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,9 +12,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -34,7 +37,7 @@ public class BeerActivity extends AppCompatActivity {
     public static final String DETAILS_FRAGMENT_KEY = "Details Fragment";
     public static final String INGREDIENTS_FRAGMENT_KEY = "Ingredients Fragment";
     public static final String STEPS_FRAGMENT_KEY = "Steps Fragment";
-    public static final String FAVOURITES = "FavouriteRecipes";
+    public static final String FAVOURITES = "FavouriteBeers";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -96,6 +99,15 @@ public class BeerActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences(FAVOURITES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
+        Log.d("Click","Favourite clicked");
+
+        FloatingActionButton buttonPressed = (FloatingActionButton) view;
+        Beer selectedBeer = (Beer) buttonPressed.getTag();
+        favouritesList.add(selectedBeer);
+
+        Log.d("Added","added to list");
+        Log.d("Details",favouritesList.get(0).getName().toString());
+
         Gson gson = new Gson();
 
         editor.putString("favourites",gson.toJson(favouritesList));
@@ -121,7 +133,8 @@ public class BeerActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_favourites) {
-            Intent intent = new Intent(this,ListActivity.class);
+            Intent intent = new Intent(this,FavouritesActivity.class);
+            intent.putExtra("favouritesList",favouritesList);
             startActivity(intent);
             return true;
         }
