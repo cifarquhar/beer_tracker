@@ -188,6 +188,7 @@ public class BeerActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_beer, menu);
+        getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
     }
 
@@ -199,6 +200,11 @@ public class BeerActivity extends AppCompatActivity {
         if (id == R.id.action_favourites) {
             Intent intent = new Intent(this,FavouritesActivity.class);
             intent.putExtra("favouritesList",favouritesList);
+            startActivity(intent);
+            return true;
+        }
+        else if (id == R.id.action_add) {
+            Intent intent = new Intent(this,AddActivity.class);
             startActivity(intent);
             return true;
         }

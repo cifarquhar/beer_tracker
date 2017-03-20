@@ -24,7 +24,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.codeclan.beertracker.ListActivity" />
         </activity>
-        <activity android:name=".FavouritesActivity"></activity>
+        <activity android:name=".FavouritesActivity" />
+        <activity android:name=".AddActivity"></activity>
     </application>
 
 </manifest>
