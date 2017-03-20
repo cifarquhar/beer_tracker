@@ -62,6 +62,7 @@ public class BeerActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -81,9 +82,7 @@ public class BeerActivity extends AppCompatActivity {
         ingredientsString = extras.getString("beerIngredients");
         stepsString = extras.getString("beerSteps");
         beerObject = (Beer) extras.getSerializable("beerObject");
-//        favouritesList = (ArrayList<Beer>) extras.getSerializable("favouritesList");
-//
-//        Log.d("ArrayStatusOnCreate",favouritesList.toString());
+
 
     }
 
