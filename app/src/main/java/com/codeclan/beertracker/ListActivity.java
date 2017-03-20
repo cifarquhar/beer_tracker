@@ -1,6 +1,8 @@
 package com.codeclan.beertracker;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,20 +12,40 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 
 
 public class ListActivity extends AppCompatActivity {
 
-    ArrayList<Beer> favouritesList;
+    public static final String BEERLIST = "beerList";
+
+    ArrayList<Beer> beers;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.beer_list);
 
-        BeerList beerList = new BeerList();
-        ArrayList<Beer> beers = beerList.getBeerList();
+        SharedPreferences sharedPref = getSharedPreferences(BEERLIST, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        String importedBeerList = sharedPref.getString("beerList","");
+
+        Gson gson = new Gson();
+
+        if(importedBeerList.equals("")) {
+            BeerList beerList = new BeerList();
+            beers = beerList.getBeerList();
+        }
+        else{
+            TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>(){};
+            beers = gson.fromJson("beerList",beerArrayList.getType());
+        }
 
         BeerAdapter beerAdapter = new BeerAdapter(this,beers);
 
@@ -46,7 +68,6 @@ public class ListActivity extends AppCompatActivity {
 
         if (id == R.id.action_favourites) {
             Intent intent = new Intent(this,FavouritesActivity.class);
-            intent.putExtra("favouritesList",favouritesList);
             startActivity(intent);
             return true;
         }

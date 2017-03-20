@@ -198,7 +198,6 @@ public class BeerActivity extends AppCompatActivity {
 
         if (id == R.id.action_favourites) {
             Intent intent = new Intent(this,FavouritesActivity.class);
-            intent.putExtra("favouritesList",favouritesList);
             startActivity(intent);
             return true;
         }
