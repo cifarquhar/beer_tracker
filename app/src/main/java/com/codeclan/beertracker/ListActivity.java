@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 public class ListActivity extends AppCompatActivity {
 
@@ -29,17 +29,6 @@ public class ListActivity extends AppCompatActivity {
 
         ListView listview = (ListView) findViewById(R.id.list);
         listview.setAdapter(beerAdapter);
-
-//        Log.d("OnCreate",getIntent().getSerializableExtra("favouritesList").toString());
-//
-//           if  (getIntent().getSerializableExtra("favouritesList") != null) {
-//               favouritesList = (ArrayList<Beer>) getIntent().getSerializableExtra("favouritesList");
-//               Log.d("OnCreate","If called");
-//           }
-//        else{
-//            favouritesList = new ArrayList<Beer>();
-//    Log.d("OnCreate","Else called");
-//        }
 
     }
 
@@ -77,9 +66,6 @@ public class ListActivity extends AppCompatActivity {
         intent.putExtra("beerIngredients",selectedBeerIngredients);
         intent.putExtra("beerSteps",selectedBeerSteps);
         intent.putExtra("beerObject",selectedBeer);
-//        intent.putExtra("favouritesList",favouritesList);
-
-//        Log.d("favouritesExtras",intent.getSerializableExtra("favouriteList").toString());
 
         startActivity(intent);
 
