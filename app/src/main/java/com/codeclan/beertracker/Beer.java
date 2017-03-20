@@ -1,12 +1,13 @@
 package com.codeclan.beertracker;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * Created by user on 16/03/2017.
  */
 
-public class Beer {
+public class Beer implements Serializable{
 
     String name;
     String type;

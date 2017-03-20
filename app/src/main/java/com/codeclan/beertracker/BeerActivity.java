@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class BeerActivity extends AppCompatActivity {
     String detailsString;
     String ingredientsString;
     String stepsString;
+    Beer beerObject;
 
     ArrayList<Beer> favouritesList;
 
@@ -73,17 +75,80 @@ public class BeerActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        favouritesList = new ArrayList<Beer>();
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         detailsString = extras.getString("beerDetails");
         ingredientsString = extras.getString("beerIngredients");
         stepsString = extras.getString("beerSteps");
-
+        beerObject = (Beer) extras.getSerializable("beerObject");
+        favouritesList = (ArrayList<Beer>) extras.getSerializable("favouritesList");
 
     }
 
+
+    /**
+     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+
+
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+
+
+        @Override
+        public Fragment getItem(int position) {
+
+
+
+            switch (position) {
+                case 0:
+                    Bundle detailsBundle = new Bundle();
+                    detailsBundle.putString(DETAILS_FRAGMENT_KEY, detailsString);
+                    DetailsActivity beerDetails = new DetailsActivity();
+                    beerDetails.setArguments(detailsBundle);
+                    return beerDetails;
+                case 1:
+                    Bundle ingredientsBundle = new Bundle();
+                    ingredientsBundle.putString(INGREDIENTS_FRAGMENT_KEY, ingredientsString);
+                    IngredientsActivity beerIngredients = new IngredientsActivity();
+                    beerIngredients.setArguments(ingredientsBundle);
+                    return beerIngredients;
+                case 2:
+                    Bundle stepsBundle = new Bundle();
+                    stepsBundle.putString(STEPS_FRAGMENT_KEY, stepsString);
+                    StepsActivity beerSteps = new StepsActivity();
+                    beerSteps.setArguments(stepsBundle);
+                    return beerSteps;
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            // Show 3 total pages.
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "Details";
+                case 1:
+                    return "Ingredients";
+                case 2:
+                    return "Steps";
+            }
+            return null;
+        }
+    }
 
 //    FloatingActionButton favourite = (FloatingActionButton) findViewById(R.id.favourite);
 //        favourite.setOnClickListener(new View.OnClickListener() {
@@ -101,12 +166,16 @@ public class BeerActivity extends AppCompatActivity {
 
         Log.d("Click","Favourite clicked");
 
-        FloatingActionButton buttonPressed = (FloatingActionButton) view;
-        Beer selectedBeer = (Beer) buttonPressed.getTag();
-        favouritesList.add(selectedBeer);
+//        FloatingActionButton buttonPressed = (FloatingActionButton) view;
+//        Beer selectedBeer = (Beer) buttonPressed.getTag();
+
+
+        Log.d("Details", beerObject.getName());
+
+        favouritesList.add(beerObject);
 
         Log.d("Added","added to list");
-        Log.d("Details",favouritesList.get(0).getName().toString());
+        Log.d("Details",favouritesList.get(0).getName());
 
         Gson gson = new Gson();
 
@@ -144,67 +213,5 @@ public class BeerActivity extends AppCompatActivity {
 
 
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-
-
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-
-
-        @Override
-        public Fragment getItem(int position) {
-
-
-
-            switch (position) {
-            case 0:
-                Bundle detailsBundle = new Bundle();
-                detailsBundle.putString(DETAILS_FRAGMENT_KEY, detailsString);
-                DetailsActivity beerDetails = new DetailsActivity();
-                beerDetails.setArguments(detailsBundle);
-                return beerDetails;
-            case 1:
-                Bundle ingredientsBundle = new Bundle();
-                ingredientsBundle.putString(INGREDIENTS_FRAGMENT_KEY, ingredientsString);
-                IngredientsActivity beerIngredients = new IngredientsActivity();
-                beerIngredients.setArguments(ingredientsBundle);
-                return beerIngredients;
-            case 2:
-                Bundle stepsBundle = new Bundle();
-                stepsBundle.putString(STEPS_FRAGMENT_KEY, stepsString);
-                StepsActivity beerSteps = new StepsActivity();
-                beerSteps.setArguments(stepsBundle);
-                return beerSteps;
-            default:
-                return null;
-        }
-        }
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 3;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Details";
-                case 1:
-                    return "Ingredients";
-                case 2:
-                    return "Steps";
-            }
-            return null;
-        }
-    }
 }

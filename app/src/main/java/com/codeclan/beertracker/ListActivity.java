@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ListActivity extends AppCompatActivity {
+
+    ArrayList<Beer> favouritesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +31,35 @@ public class ListActivity extends AppCompatActivity {
         listview.setAdapter(beerAdapter);
 
 
+        if (favouritesList == null){
+            favouritesList = new ArrayList<Beer>();
+        }
+        else{
+            favouritesList = (ArrayList<Beer>) getIntent().getSerializableExtra("favouritesList");
+        }
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_beer, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.action_favourites) {
+            Intent intent = new Intent(this,FavouritesActivity.class);
+            intent.putExtra("favouritesList",favouritesList);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void itemClicked(View item) {
@@ -48,6 +74,8 @@ public class ListActivity extends AppCompatActivity {
         intent.putExtra("beerDetails",selectedBeerDetails);
         intent.putExtra("beerIngredients",selectedBeerIngredients);
         intent.putExtra("beerSteps",selectedBeerSteps);
+        intent.putExtra("beerObject",selectedBeer);
+        intent.putExtra("favouritesList",favouritesList);
 
         Log.d("Beer selected",selectedBeerDetails);
 
