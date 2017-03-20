@@ -20,6 +20,8 @@ import static com.codeclan.beertracker.BeerActivity.FAVOURITES;
 
 public class FavouritesActivity extends AppCompatActivity {
 
+    ArrayList<Beer> favouriteBeers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +32,10 @@ public class FavouritesActivity extends AppCompatActivity {
 
         Gson gson = new Gson();
         TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>(){};
-        ArrayList<Beer> favouriteBeers = gson.fromJson(favourites,beerArrayList.getType());
+        favouriteBeers = gson.fromJson(favourites,beerArrayList.getType());
 
         Log.d("Item",favouriteBeers.get(0).getName().toString());
 
-//        BeerList beerList = new BeerList(favouriteBeers);
-//        ArrayList<Beer> beers = beerList.getBeerList();
 
         BeerAdapter beerAdapter = new BeerAdapter(this,favouriteBeers);
 
@@ -63,6 +63,7 @@ public class FavouritesActivity extends AppCompatActivity {
         intent.putExtra("beerIngredients",selectedBeerIngredients);
         intent.putExtra("beerSteps",selectedBeerSteps);
         intent.putExtra("beerObject",selectedBeer);
+        intent.putExtra("favouritesList",favouriteBeers);
 
         Log.d("Beer selected",selectedBeerDetails);
 

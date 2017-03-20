@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
@@ -77,11 +78,15 @@ public class BeerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
+
+        Log.d("extrasOnCreate",extras.toString());
         detailsString = extras.getString("beerDetails");
         ingredientsString = extras.getString("beerIngredients");
         stepsString = extras.getString("beerSteps");
         beerObject = (Beer) extras.getSerializable("beerObject");
-        favouritesList = (ArrayList<Beer>) extras.getSerializable("favouritesList");
+//        favouritesList = (ArrayList<Beer>) extras.getSerializable("favouritesList");
+//
+//        Log.d("ArrayStatusOnCreate",favouritesList.toString());
 
     }
 
@@ -150,34 +155,27 @@ public class BeerActivity extends AppCompatActivity {
         }
     }
 
-//    FloatingActionButton favourite = (FloatingActionButton) findViewById(R.id.favourite);
-//        favourite.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                    .setAction("Action", null).show();
-//        }
-//    });
 
 
     public void favouriteClick (View view){
         SharedPreferences sharedPref = getSharedPreferences(FAVOURITES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
-        Log.d("Click","Favourite clicked");
-
-//        FloatingActionButton buttonPressed = (FloatingActionButton) view;
-//        Beer selectedBeer = (Beer) buttonPressed.getTag();
+        String favourites = sharedPref.getString("favourites","Adding something...");
 
 
-        Log.d("Details", beerObject.getName());
+
+        Gson gson = new Gson();
+        TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>(){};
+        favouritesList = gson.fromJson(favourites,beerArrayList.getType());
+
+        Log.d("BeforeAdd",favouritesList.toString());
 
         favouritesList.add(beerObject);
 
-        Log.d("Added","added to list");
-        Log.d("Details",favouritesList.get(0).getName());
+        Log.d("AfterAdd",favouritesList.toString());
 
-        Gson gson = new Gson();
+
 
         editor.putString("favourites",gson.toJson(favouritesList));
         editor.apply();
