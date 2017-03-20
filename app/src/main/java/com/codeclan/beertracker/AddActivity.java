@@ -1,14 +1,23 @@
 package com.codeclan.beertracker;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static com.codeclan.beertracker.ListActivity.BEERLIST;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -16,17 +25,17 @@ public class AddActivity extends AppCompatActivity {
     EditText newBeerStyle;
     EditText newBeerDescription;
 //    ArrayList<EditText> newBeerIngredients;
-    NumberPicker newBeerOG;
-    NumberPicker newBeerFG;
-    NumberPicker newBeerMashTemp;
-    NumberPicker newBeerMashTime;
-    NumberPicker newBeerBoilTime;
-    NumberPicker newBeerFermentation;
-    NumberPicker newBeerDryHops;
-    NumberPicker newBeerConditioning;
+    EditText newBeerOG;
+    EditText newBeerFG;
+    EditText newBeerMashTemp;
+    EditText newBeerMashTime;
+    EditText newBeerBoilTime;
+    EditText newBeerFermentation;
+    EditText newBeerDryHops;
+    EditText newBeerConditioning;
     HashMap<String,String> beerDetails;
-    HashMap<String,Integer> beerIngredients;
-    HashMap<String,Integer> beerSteps;
+    HashMap<String,String> beerIngredients;
+    HashMap<String,String> beerSteps;
 
 
     @Override
@@ -38,23 +47,23 @@ public class AddActivity extends AppCompatActivity {
         newBeerStyle = (EditText) findViewById(R.id.style_input);
         newBeerDescription = (EditText) findViewById(R.id.description_input);
 //        newBeerIngredients = ???
-        newBeerOG = (NumberPicker) findViewById(R.id.target_og_input);
-        newBeerFG = (NumberPicker) findViewById(R.id.target_fg_input);
-        newBeerMashTemp = (NumberPicker) findViewById(R.id.mash_temp_input);
-        newBeerMashTime = (NumberPicker) findViewById(R.id.mash_time_input);
-        newBeerBoilTime = (NumberPicker) findViewById(R.id.boil_time_input);
-        newBeerFermentation = (NumberPicker) findViewById(R.id.fermentation_time_input);
-        newBeerDryHops = (NumberPicker) findViewById(R.id.dry_hop_input);
-        newBeerConditioning = (NumberPicker) findViewById(R.id.conditioning_time_input);
+        newBeerOG = (EditText) findViewById(R.id.target_og_input);
+        newBeerFG = (EditText) findViewById(R.id.target_fg_input);
+        newBeerMashTemp = (EditText) findViewById(R.id.mash_temp_input);
+        newBeerMashTime = (EditText) findViewById(R.id.mash_time_input);
+        newBeerBoilTime = (EditText) findViewById(R.id.boil_time_input);
+        newBeerFermentation = (EditText) findViewById(R.id.fermentation_time_input);
+        newBeerDryHops = (EditText) findViewById(R.id.dry_hop_input);
+        newBeerConditioning = (EditText) findViewById(R.id.conditioning_time_input);
 
         beerDetails = new HashMap<String,String>();
-        beerIngredients = new HashMap<String,Integer>();
-        beerSteps = new HashMap<String,Integer>();
+        beerIngredients = new HashMap<String,String>();
+        beerSteps = new HashMap<String,String>();
 
     }
 
-    public String dryHopNeeded(int days){
-        if (days == 0){
+    public String dryHopNeeded(String days){
+        if (days.equals(0)){
             return "No";
         }
         else{
@@ -62,25 +71,36 @@ public class AddActivity extends AppCompatActivity {
         }
     }
 
-    public void addClick(){
+    public void addClick(View view){
 
         String beerName = newBeerName.getText().toString();
+        Log.d("OutputTest",beerName);
         String beerStyle = newBeerStyle.getText().toString();
+        Log.d("OutputTest",beerStyle);
         String beerDescription = newBeerDescription.getText().toString();
-        Integer beerOG = newBeerOG.getValue();
-        Integer beerFG = newBeerFG.getValue();
-        Integer beerMashTemp = newBeerMashTemp.getValue();
-        Integer beerMashTime = newBeerMashTime.getValue();
-        Integer beerBoilTime = newBeerBoilTime.getValue();
-        Integer beerFermentation = newBeerFermentation.getValue();
-        Integer beerDryHops = newBeerDryHops.getValue();
-        Integer beerConditioning = newBeerConditioning.getValue();
+        Log.d("OutputTest",beerDescription);
+        String beerOG = newBeerOG.getText().toString();
+        Log.d("OutputTest",beerOG);
+        String beerFG = newBeerFG.getText().toString();
+        Log.d("OutputTest",beerFG);
+        String beerMashTemp = newBeerMashTemp.getText().toString();
+        Log.d("OutputTest",beerMashTemp);
+        String beerMashTime = newBeerMashTime.getText().toString();
+        Log.d("OutputTest",beerMashTime);
+        String beerBoilTime = newBeerBoilTime.getText().toString();
+        Log.d("OutputTest",beerBoilTime);
+        String beerFermentation = newBeerFermentation.getText().toString();
+        Log.d("OutputTest",beerFermentation);
+        String beerDryHops = newBeerDryHops.getText().toString();
+        Log.d("OutputTest",beerDryHops);
+        String beerConditioning = newBeerConditioning.getText().toString();
+        Log.d("OutputTest",beerConditioning);
 
-        beerDetails.put("Target OG: ", beerOG.toString());
-        beerDetails.put("Target FG: ", beerFG.toString());
+        beerDetails.put("Target OG: ", beerOG);
+        beerDetails.put("Target FG: ", beerFG);
 
-        Double doubleOG = beerOG.doubleValue();
-        Double doubleFG = beerFG.doubleValue();
+        Double doubleOG = Double.parseDouble(beerOG);
+        Double doubleFG = Double.parseDouble(beerFG);
         Double beerABV = (doubleOG - doubleFG) * 131.25;
 
         beerDetails.put("Expected ABV: ", beerABV.toString());
@@ -97,6 +117,28 @@ public class AddActivity extends AppCompatActivity {
         Beer newBeer = new Beer(beerName,beerStyle,beerDescription,beerDetails,beerIngredients,beerSteps);
 
 
+        SharedPreferences sharedPref = getSharedPreferences(BEERLIST, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        String importedBeerList = sharedPref.getString("beerList","");
+
+        Log.d("AfterGetString",importedBeerList);
+
+
+        Gson gson = new Gson();
+        TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>(){};
+        ArrayList<Beer> beerList = gson.fromJson(importedBeerList,beerArrayList.getType());
+
+//        Log.d("BeforeAdd",favouritesList.toString());
+
+        beerList.add(newBeer);
+
+//        Log.d("AfterAdd",favouritesList.toString());
+
+
+
+        editor.putString("beerList",gson.toJson(beerList));
+        editor.apply();
 
 
 

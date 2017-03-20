@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:text="Target Original Gravity"/>
 
-            <NumberPicker
+            <EditText
                 android:id="@+id/target_og_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:text="Target Final Gravity"/>
 
-            <NumberPicker
+            <EditText
                 android:id="@+id/target_fg_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:text="Mash temp (C)"/>
 
-            <NumberPicker
+            <EditText
                 android:id="@+id/mash_temp_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -161,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:text="Mash time (min)"/>
 
-            <NumberPicker
+            <EditText
                 android:id="@+id/mash_time_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -178,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:text="Boil time (min)"/>
 
-            <NumberPicker
+            <EditText
                 android:id="@+id/boil_time_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -196,7 +196,7 @@
                 android:layout_height="wrap_content"
                 android:text="Fermentation time (days)"/>
 
-            <NumberPicker
+            <EditText
                 android:id="@+id/fermentation_time_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -213,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:text="Dry hop time (days, 0 if none)"/>
 
-            <NumberPicker
+            <EditText
                 android:id="@+id/dry_hop_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -230,7 +230,7 @@
                 android:layout_height="wrap_content"
                 android:text="Conditioning time (weeks)"/>
 
-            <NumberPicker
+            <EditText
                 android:id="@+id/conditioning_time_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

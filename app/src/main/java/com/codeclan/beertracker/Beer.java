@@ -13,10 +13,10 @@ public class Beer implements Serializable{
     String type;
     String description;
     HashMap<String,String> details;
-    HashMap<String,Integer> ingredients;
-    HashMap<String,Integer> steps;
+    HashMap<String,String> ingredients;
+    HashMap<String,String> steps;
 
-    public Beer(String name, String type, String description, HashMap<String, String> details, HashMap<String, Integer> ingredients, HashMap<String, Integer> steps) {
+    public Beer(String name, String type, String description, HashMap<String, String> details, HashMap<String, String> ingredients, HashMap<String, String> steps) {
         this.name = name;
         this.type = type;
         this.description = description;
@@ -57,19 +57,19 @@ public class Beer implements Serializable{
         this.details = details;
     }
 
-    public HashMap<String, Integer> getIngredients() {
+    public HashMap<String, String> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(HashMap<String, Integer> ingredients) {
+    public void setIngredients(HashMap<String, String> ingredients) {
         this.ingredients = ingredients;
     }
 
-    public HashMap<String, Integer> getSteps() {
+    public HashMap<String, String> getSteps() {
         return steps;
     }
 
-    public void setSteps(HashMap<String, Integer> steps) {
+    public void setSteps(HashMap<String, String> steps) {
         this.steps = steps;
     }
 
@@ -97,8 +97,8 @@ public class Beer implements Serializable{
     public String parseIngredientsHash(){
         String outputString = "";
         for (String term: ingredients.keySet()){
-            Integer value = ingredients.get(term);
-            String lineToAdd =  "\"" + term + "\"" + ": " + value.toString() + "," + "\n";
+            String value = ingredients.get(term);
+            String lineToAdd =  "\"" + term + "\"" + ": " + value + "," + "\n";
             outputString = outputString + lineToAdd;
         }
         return outputString;
@@ -107,8 +107,8 @@ public class Beer implements Serializable{
     public String parseStepsHash(){
         String outputString = "";
         for (String term: steps.keySet()){
-            Integer value = steps.get(term);
-            String lineToAdd =  "\"" + term + "\"" + ": " + value.toString() + "," + "\n";
+            String value = steps.get(term);
+            String lineToAdd =  "\"" + term + "\"" + ": " + value + "," + "\n";
             outputString = outputString + lineToAdd;
         }
         return outputString;
