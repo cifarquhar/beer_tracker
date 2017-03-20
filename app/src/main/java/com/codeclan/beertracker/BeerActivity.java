@@ -179,6 +179,45 @@ public class BeerActivity extends AppCompatActivity {
         Toast.makeText(BeerActivity.this,"Added to Favourites",Toast.LENGTH_LONG).show();
     }
 
+    public void removeFavouriteClick (View view){
+        SharedPreferences sharedPref = getSharedPreferences(FAVOURITES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        String favourites = sharedPref.getString("favourites","Removing something...");
+
+
+
+        Gson gson = new Gson();
+        TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>(){};
+        favouritesList = gson.fromJson(favourites,beerArrayList.getType());
+
+
+        ArrayList<String> favouriteBeerNames = new ArrayList<String>();
+        for (Beer beer : favouritesList){
+            favouriteBeerNames.add(beer.getName());
+        }
+
+
+        if (favouriteBeerNames.contains(beerObject.getName())){
+            for (Beer beer : favouritesList){
+                if (beer.getName().equals(beerObject.getName())){
+                    favouritesList.remove(beer);
+                }
+            }
+
+            Toast.makeText(BeerActivity.this,"Removed from Favourites",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(BeerActivity.this,"This beer isn't in Favourites",Toast.LENGTH_SHORT).show();
+        }
+
+
+        editor.putString("favourites",gson.toJson(favouritesList));
+        editor.apply();
+
+
+    }
+
 
 
 
