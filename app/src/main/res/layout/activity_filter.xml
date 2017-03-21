@@ -11,6 +11,7 @@
         android:id="@+id/filter_instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20dp"
         android:text="Select an option to filter by:"/>
 
     <RadioGroup
@@ -24,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="radioClick"
+            android:textSize="20dp"
             android:text="Style"/>
 
         <RadioButton
@@ -31,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="radioClick"
+            android:textSize="20dp"
             android:text="Ingredient"/>
 
         <RadioButton
@@ -38,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="radioClick"
+            android:textSize="20dp"
             android:text="Conditioning Time"/>
 
     </RadioGroup>
@@ -46,7 +50,8 @@
         android:id="@+id/filter_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:textSize="20dp"
+        android:hint="Enter search value"
        />
 
 
@@ -55,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="filterClick"
+        android:layout_gravity="center"
         android:text="Filter"/>
 
 
