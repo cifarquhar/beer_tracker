@@ -41,14 +41,20 @@ public class FavouritesActivity extends AppCompatActivity {
         TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>(){};
         favouriteBeers = gson.fromJson(favourites,beerArrayList.getType());
 
-        Log.d("Item",favouriteBeers.get(0).getName().toString());
+//        Log.d("Item",favouriteBeers.get(0).getName().toString());
 
 
-        BeerAdapter beerAdapter = new BeerAdapter(this,favouriteBeers);
+        if (favouriteBeers.size() == 0){
+            TextView textview = (TextView) findViewById(R.id.favourite_error_catch);
+            textview.setText("Favourites list is empty");
+        }
+        else {
 
-        ListView listview = (ListView) findViewById(R.id.favourite_list);
-        listview.setAdapter(beerAdapter);
+            BeerAdapter beerAdapter = new BeerAdapter(this, favouriteBeers);
 
+            ListView listview = (ListView) findViewById(R.id.favourite_list);
+            listview.setAdapter(beerAdapter);
+        }
     }
 
 
