@@ -5,8 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
 
 public class FilterActivity extends AppCompatActivity {
+
+    String buttonID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,15 +20,37 @@ public class FilterActivity extends AppCompatActivity {
     }
 
 
+    public void radioClick (View view){
+
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch(view.getId()) {
+            case R.id.filter_style:
+                if (checked)
+                    buttonID = "style";
+                    break;
+            case R.id.filter_ingredient:
+                if (checked)
+                    buttonID = "ingredient";
+                    break;
+            case R.id.filter_conditioning:
+                if (checked)
+                    buttonID = "conditioning";
+                break;
+        }
+    }
 
 
+    public void filterClick (View view){
+        EditText input = (EditText) findViewById(R.id.filter_input);
 
+        String inputString = input.getText().toString();
 
-
-
-
-
-
+        Intent intent = new Intent(this,FilterListActivity.class);
+        intent.putExtra("filterOn",buttonID);
+        intent.putExtra("filterFor",inputString);
+        startActivity(intent);
+    }
 
 
 
