@@ -38,6 +38,7 @@ public class BeerActivity extends AppCompatActivity {
     public static final String INGREDIENTS_FRAGMENT_KEY = "Ingredients Fragment";
     public static final String STEPS_FRAGMENT_KEY = "Steps Fragment";
     public static final String FAVOURITES = "FavouriteBeers";
+    public static final String BEERLIST = "beerList";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -231,10 +232,55 @@ public class BeerActivity extends AppCompatActivity {
         else{
             Toast.makeText(BeerActivity.this,"This beer isn't in Favourites",Toast.LENGTH_SHORT).show();
         }
+    }
 
 
+    public void deleteClick (View view) {
+        SharedPreferences sharedPref = getSharedPreferences(BEERLIST, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        String beers = sharedPref.getString("beerList", "Removing something...");
+
+        Gson gson = new Gson();
+        TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>() {
+        };
+        ArrayList<Beer> beerList = gson.fromJson(beers, beerArrayList.getType());
+
+        ArrayList<String> allBeerNames = new ArrayList<String>();
+        for (Beer beer : beerList) {
+            allBeerNames.add(beer.getName());
+        }
+
+        ArrayList<Beer> newBeerList = new ArrayList<Beer>();
+
+        for (Beer beer : beerList) {
+            if (!beer.getName().equals(beerObject.getName())) {
+                newBeerList.add(beer);
+            }
+        }
+
+        editor.putString("beerList", gson.toJson(newBeerList));
+        editor.apply();
+
+        Toast.makeText(BeerActivity.this, "Beer deleted!", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this,ListActivity.class);
+        startActivity(intent);
+        
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
