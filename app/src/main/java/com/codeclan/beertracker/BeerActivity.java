@@ -153,30 +153,39 @@ public class BeerActivity extends AppCompatActivity {
 
 
 
-    public void favouriteClick (View view){
+    public void favouriteClick (View view) {
         SharedPreferences sharedPref = getSharedPreferences(FAVOURITES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
-        String favourites = sharedPref.getString("favourites","Adding something...");
-
+        String favourites = sharedPref.getString("favourites", "Adding something...");
 
 
         Gson gson = new Gson();
-        TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>(){};
-        favouritesList = gson.fromJson(favourites,beerArrayList.getType());
+        TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>() {
+        };
+        favouritesList = gson.fromJson(favourites, beerArrayList.getType());
 
-        Log.d("BeforeAdd",favouritesList.toString());
+//        Log.d("BeforeAdd",favouritesList.toString());
 
-        favouritesList.add(beerObject);
+        ArrayList<String> favouriteBeerNames = new ArrayList<String>();
+        for (Beer beer : favouritesList) {
+            favouriteBeerNames.add(beer.getName());
+        }
 
-        Log.d("AfterAdd",favouritesList.toString());
+        if (favouriteBeerNames.contains(beerObject.getName())) {
+            Toast.makeText(BeerActivity.this, "Already in Favourites!", Toast.LENGTH_SHORT).show();
+        } else {
+
+            favouritesList.add(beerObject);
+
+//        Log.d("AfterAdd",favouritesList.toString());
 
 
+            editor.putString("favourites", gson.toJson(favouritesList));
+            editor.apply();
 
-        editor.putString("favourites",gson.toJson(favouritesList));
-        editor.apply();
-
-        Toast.makeText(BeerActivity.this,"Added to Favourites",Toast.LENGTH_LONG).show();
+            Toast.makeText(BeerActivity.this, "Added to Favourites", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void removeFavouriteClick (View view){
