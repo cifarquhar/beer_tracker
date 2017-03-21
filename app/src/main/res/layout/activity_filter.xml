@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:text="Select an option to filter by:"/>
+        android:text="Select an option to search by:"/>
 
     <RadioGroup
         android:id="@+id/filter_group"
