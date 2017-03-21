@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -64,7 +66,8 @@ public class FilterListActivity extends AppCompatActivity {
         }
         else if (filterOn.equals("conditioning")){
             for (Beer beer : beers){
-                if (beer.steps.get("Conditioning time (days): ").equals(filterFor)){
+                Log.d("In For", beer.steps.toString());
+                if (beer.steps.get("Conditioning time (weeks): ").equals(filterFor)){
                     filteredBeers.add(beer);
                 }
             }
@@ -78,11 +81,25 @@ public class FilterListActivity extends AppCompatActivity {
     }
 
 
+    public void itemClicked(View item) {
+        TextView textView = (TextView) item;
+        Beer selectedBeer = (Beer) textView.getTag();
 
+        String selectedBeerDetails = selectedBeer.parseDetailsHash();
+        String selectedBeerIngredients = selectedBeer.parseIngredientsHash();
+        String selectedBeerSteps = selectedBeer.parseStepsHash();
 
+        Intent intent = new Intent(this, BeerActivity.class);
+        intent.putExtra("beerDetails",selectedBeerDetails);
+        intent.putExtra("beerIngredients",selectedBeerIngredients);
+        intent.putExtra("beerSteps",selectedBeerSteps);
+        intent.putExtra("beerObject",selectedBeer);
 
+        startActivity(intent);
 
+    }
 
+    
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

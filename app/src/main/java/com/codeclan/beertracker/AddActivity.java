@@ -131,7 +131,7 @@ public class AddActivity extends AppCompatActivity {
         beerSteps.put("Mash time (mins): ", beerMashTime);
         beerSteps.put("Boil time (mins): ", beerBoilTime);
         beerSteps.put("Fermentation time (days):", beerFermentation);
-        beerSteps.put("Conditioning time (days): ", beerConditioning);
+        beerSteps.put("Conditioning time (weeks): ", beerConditioning);
 
         Beer newBeer = new Beer(beerName,beerStyle,beerDescription,beerDetails,beerIngredients,beerSteps);
 

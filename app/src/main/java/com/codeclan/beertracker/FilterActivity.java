@@ -3,6 +3,7 @@ package com.codeclan.beertracker;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,6 +50,7 @@ public class FilterActivity extends AppCompatActivity {
         Intent intent = new Intent(this,FilterListActivity.class);
         intent.putExtra("filterOn",buttonID);
         intent.putExtra("filterFor",inputString);
+        Log.d("In Click","Starting activity");
         startActivity(intent);
     }
 
