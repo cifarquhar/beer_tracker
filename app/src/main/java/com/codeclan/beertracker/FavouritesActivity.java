@@ -66,7 +66,7 @@ public class FavouritesActivity extends AppCompatActivity {
         intent.putExtra("beerIngredients",selectedBeerIngredients);
         intent.putExtra("beerSteps",selectedBeerSteps);
         intent.putExtra("beerObject",selectedBeer);
-        intent.putExtra("favouritesList",favouriteBeers);
+//        intent.putExtra("favouritesList",favouriteBeers);
 
         Log.d("Beer selected",selectedBeerDetails);
 

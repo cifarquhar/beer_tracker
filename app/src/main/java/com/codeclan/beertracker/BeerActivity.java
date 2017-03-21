@@ -197,13 +197,25 @@ public class BeerActivity extends AppCompatActivity {
             favouriteBeerNames.add(beer.getName());
         }
 
+        ArrayList<Beer> newFavourites = new ArrayList<Beer>();
 
         if (favouriteBeerNames.contains(beerObject.getName())){
+            Log.d("In Loop - object list",favouritesList.toString());
+            Log.d("In Loop - name list",favouriteBeerNames.toString());
+            Log.d("In Loop - object name",beerObject.getName());
             for (Beer beer : favouritesList){
-                if (beer.getName().equals(beerObject.getName())){
-                    favouritesList.remove(beer);
+                Log.d("In For - object list",favouritesList.toString());
+                if (!beer.getName().equals(beerObject.getName())){
+                    Log.d("In If - name", beer.getName());
+                    Log.d("In If - obj name", beerObject.getName());
+                    newFavourites.add(beer);
+                    Log.d("2nd In If", favouritesList.toString());
                 }
             }
+            Log.d("In Loop - object list",favouritesList.toString());
+
+            editor.putString("favourites",gson.toJson(newFavourites));
+            editor.apply();
 
             Toast.makeText(BeerActivity.this,"Removed from Favourites",Toast.LENGTH_SHORT).show();
         }
@@ -211,9 +223,6 @@ public class BeerActivity extends AppCompatActivity {
             Toast.makeText(BeerActivity.this,"This beer isn't in Favourites",Toast.LENGTH_SHORT).show();
         }
 
-
-        editor.putString("favourites",gson.toJson(favouritesList));
-        editor.apply();
 
 
     }

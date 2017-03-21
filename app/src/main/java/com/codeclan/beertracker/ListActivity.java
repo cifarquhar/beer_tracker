@@ -42,6 +42,8 @@ public class ListActivity extends AppCompatActivity {
             Log.d("OnCreate","If called");
             BeerList beerList = new BeerList();
             beers = beerList.getBeerList();
+            editor.putString("beerList",gson.toJson(beers));
+            editor.apply();
         }
         else{
             Log.d("OnCreate","Else called");
@@ -49,8 +51,7 @@ public class ListActivity extends AppCompatActivity {
             beers = gson.fromJson(importedBeerList,beerArrayList.getType());
         }
 
-        editor.putString("beerList",gson.toJson(beers));
-        editor.apply();
+
 
         BeerAdapter beerAdapter = new BeerAdapter(this,beers);
 
