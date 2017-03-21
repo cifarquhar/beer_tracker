@@ -115,23 +115,23 @@ public class AddActivity extends AppCompatActivity {
         String beerConditioning = newBeerConditioning.getText().toString();
         Log.d("OutputTest",beerConditioning);
 
-        beerDetails.put("Target OG: ", beerOG);
-        beerDetails.put("Target FG: ", beerFG);
+        beerDetails.put("Target OG", beerOG);
+        beerDetails.put("Target FG", beerFG);
 
         Double doubleOG = Double.parseDouble(beerOG);
         Double doubleFG = Double.parseDouble(beerFG);
         Double beerABV = ((doubleOG - doubleFG) * 131.25) / 1000;
 
-        beerDetails.put("Expected ABV: ", beerABV.toString());
+        beerDetails.put("Expected ABV", beerABV.toString());
 
-        beerDetails.put("Dry hopping required? ", dryHopNeeded(beerDryHops));
+        beerDetails.put("Dry hopping required?", dryHopNeeded(beerDryHops));
 
 
-        beerSteps.put("Mash temperature (C): ", beerMashTemp);
-        beerSteps.put("Mash time (mins): ", beerMashTime);
-        beerSteps.put("Boil time (mins): ", beerBoilTime);
-        beerSteps.put("Fermentation time (days):", beerFermentation);
-        beerSteps.put("Conditioning time (weeks): ", beerConditioning);
+        beerSteps.put("Mash temperature (C)", beerMashTemp);
+        beerSteps.put("Mash time (mins)", beerMashTime);
+        beerSteps.put("Boil time (mins)", beerBoilTime);
+        beerSteps.put("Fermentation time (days)", beerFermentation);
+        beerSteps.put("Conditioning time (weeks)", beerConditioning);
 
         Beer newBeer = new Beer(beerName,beerStyle,beerDescription,beerDetails,beerIngredients,beerSteps);
 
