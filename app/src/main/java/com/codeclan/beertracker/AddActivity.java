@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -63,6 +64,22 @@ public class AddActivity extends AppCompatActivity {
         beerSteps = new HashMap<String,String>();
 
     }
+
+    public void newIngredientClick (View view){
+
+        newBeerIngredientName = (EditText) findViewById(R.id.ingredient_name_input);
+        newBeerIngredientWeight = (EditText) findViewById(R.id.ingredient_weight_input);
+
+        String beerIngredientName = newBeerIngredientName.getText().toString();
+        String beerIngredientWeight = newBeerIngredientWeight.getText().toString();
+
+        beerIngredients.put(beerIngredientName,beerIngredientWeight);
+
+    }
+
+
+
+
 
     public String dryHopNeeded(String days){
         if (days.equals("0")){

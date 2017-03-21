@@ -86,7 +86,8 @@
             android:id="@+id/new_ingredient_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add another"
+            android:onClick="newIngredientClick"
+            android:text="Add ingredient"
             />
 
     </LinearLayout>
