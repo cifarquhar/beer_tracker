@@ -236,15 +236,55 @@ public class BeerActivity extends AppCompatActivity {
 
 
     public void deleteClick (View view) {
+
+//        Loads main and favourites from shared prefs
+
         SharedPreferences sharedPref = getSharedPreferences(BEERLIST, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
+        SharedPreferences sharedPref2 = getSharedPreferences(FAVOURITES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor2 = sharedPref2.edit();
+
+//        Assigns strings
+
         String beers = sharedPref.getString("beerList", "Removing something...");
 
+        String favourites = sharedPref2.getString("favourites", "Removing something...");
+
+//        Initialises JSON
+
         Gson gson = new Gson();
-        TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>() {
-        };
+
+        TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>() {};
         ArrayList<Beer> beerList = gson.fromJson(beers, beerArrayList.getType());
+
+        TypeToken<ArrayList<Beer>> favouriteBeerArrayList = new TypeToken<ArrayList<Beer>>(){};
+        favouritesList = gson.fromJson(favourites,favouriteBeerArrayList.getType());
+
+
+//        Deletes beer from favourites if present
+
+        ArrayList<String> favouriteBeerNames = new ArrayList<String>();
+        for (Beer beer : favouritesList){
+            favouriteBeerNames.add(beer.getName());
+        }
+
+        ArrayList<Beer> newFavourites = new ArrayList<Beer>();
+
+        if (favouriteBeerNames.contains(beerObject.getName())){
+            for (Beer beer : favouritesList){
+                if (!beer.getName().equals(beerObject.getName())){
+                    newFavourites.add(beer);
+                }
+            }
+
+            editor2.putString("favourites",gson.toJson(newFavourites));
+            editor2.apply();
+
+        }
+
+
+//        Deletes beer from main
 
         ArrayList<String> allBeerNames = new ArrayList<String>();
         for (Beer beer : beerList) {
@@ -266,24 +306,9 @@ public class BeerActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this,ListActivity.class);
         startActivity(intent);
-        
+
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
