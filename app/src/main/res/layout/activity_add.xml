@@ -17,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:textSize="20dp"
         android:text="Fill in details below:"
         />
 
@@ -24,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:textSize="20dp"
         android:text="Beer Name:"/>
 
     <EditText
@@ -31,12 +33,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
+        android:hint="Name"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:textSize="20dp"
         android:text="Beer Style:"/>
 
     <EditText
@@ -44,12 +48,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
+        android:hint="Style"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:textSize="20dp"
         android:text="Beer Description:"/>
 
     <EditText
@@ -57,12 +63,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
+        android:hint="Description"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:textSize="20dp"
         android:text="Ingredients:"/>
 
     <LinearLayout
@@ -74,13 +82,14 @@
             android:id="@+id/ingredient_name_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ingredient"/>
+            android:hint="ingredient"/>
 
         <EditText
             android:id="@+id/ingredient_weight_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="weight (g)"/>
+            android:inputType="number"
+            android:hint="weight (g)"/>
 
         <Button
             android:id="@+id/new_ingredient_button"
@@ -106,12 +115,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Target Original Gravity"/>
+                android:textSize="20dp"
+                android:text="Target Original Gravity:"/>
 
             <EditText
                 android:id="@+id/target_og_input"
+                android:inputType="number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:hint="OG"
 
                 />
 
@@ -125,12 +137,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Target Final Gravity"/>
+                android:textSize="20dp"
+                android:text="Target Final Gravity:"/>
 
             <EditText
                 android:id="@+id/target_fg_input"
+                android:inputType="number"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="FG"/>
 
         </LinearLayout>
 
@@ -142,12 +157,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mash temp (C)"/>
+                android:textSize="20dp"
+                android:text="Mash temperature:"/>
 
             <EditText
                 android:id="@+id/mash_temp_input"
+                android:inputType="number"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:hint="\u2103"/>
 
 
         </LinearLayout>
@@ -160,12 +178,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mash time (min)"/>
+                android:textSize="20dp"
+                android:text="Mash time:"/>
 
             <EditText
                 android:id="@+id/mash_time_input"
+                android:inputType="number"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="minutes"/>
 
         </LinearLayout>
 
@@ -177,12 +198,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Boil time (min)"/>
+                android:textSize="20dp"
+                android:text="Boil time:"/>
 
             <EditText
                 android:id="@+id/boil_time_input"
+                android:inputType="number"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="minutes"/>
 
 
         </LinearLayout>
@@ -195,12 +219,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fermentation time (days)"/>
+                android:textSize="20dp"
+                android:text="Fermentation time:"/>
 
             <EditText
                 android:id="@+id/fermentation_time_input"
+                android:inputType="number"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="days"/>
 
         </LinearLayout>
 
@@ -212,12 +239,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dry hop time (days, 0 if none)"/>
+                android:textSize="20dp"
+                android:text="Dry hop time:"/>
 
             <EditText
                 android:id="@+id/dry_hop_input"
+                android:inputType="number"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="days (0 if none)"/>
 
         </LinearLayout>
 
@@ -229,12 +259,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Conditioning time (weeks)"/>
+                android:textSize="20dp"
+                android:text="Conditioning time"/>
 
             <EditText
                 android:id="@+id/conditioning_time_input"
+                android:inputType="number"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="weeks"/>
 
         </LinearLayout>
 
