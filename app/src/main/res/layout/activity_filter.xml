@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.codeclan.beertracker.FilterActivity">
+
+    <TextView
+        android:id="@+id/filter_instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select an option to filter by:"/>
+
+    <RadioGroup
+        android:id="@+id/filter_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/filter_instructions">
+
+        <RadioButton
+            android:id="@+id/filter_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Style"/>
+
+    </RadioGroup>
+    
+    <EditText
+        android:id="@+id/filter_style_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test"
+        android:layout_alignBottom="@+id/filter_group"
+        android:layout_alignRight="@+id/filter_instructions"
+        android:layout_alignEnd="@+id/filter_instructions"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp" />
+
+
+    <Button
+        android:id="@+id/filter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="Filter"/>
+
+
+</RelativeLayout>

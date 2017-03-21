@@ -83,6 +83,7 @@ public class FavouritesActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home, menu);
+        getMenuInflater().inflate(R.menu.menu_filter, menu);
         getMenuInflater().inflate(R.menu.menu_beer, menu);
         getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
@@ -107,6 +108,11 @@ public class FavouritesActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_home) {
             Intent intent = new Intent(this,ListActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        else if (id == R.id.action_filter) {
+            Intent intent = new Intent(this,FilterActivity.class);
             startActivity(intent);
             return true;
         }
