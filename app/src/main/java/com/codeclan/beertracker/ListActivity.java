@@ -62,6 +62,7 @@ public class ListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_home, menu);
         getMenuInflater().inflate(R.menu.menu_beer, menu);
         getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
@@ -79,6 +80,11 @@ public class ListActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_add) {
             Intent intent = new Intent(this,AddActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        else if (id == R.id.action_home) {
+            Intent intent = new Intent(this,ListActivity.class);
             startActivity(intent);
             return true;
         }
