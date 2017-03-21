@@ -24,7 +24,8 @@ public class AddActivity extends AppCompatActivity {
     EditText newBeerName;
     EditText newBeerStyle;
     EditText newBeerDescription;
-//    ArrayList<EditText> newBeerIngredients;
+    EditText newBeerIngredientName;
+    EditText newBeerIngredientWeight;
     EditText newBeerOG;
     EditText newBeerFG;
     EditText newBeerMashTemp;
@@ -46,7 +47,8 @@ public class AddActivity extends AppCompatActivity {
         newBeerName = (EditText) findViewById(R.id.name_input);
         newBeerStyle = (EditText) findViewById(R.id.style_input);
         newBeerDescription = (EditText) findViewById(R.id.description_input);
-//        newBeerIngredients = ???
+//        newBeerIngredientName = (EditText) findViewById(R.id.ingredient_name_input);
+//        newBeerIngredientWeight = (EditText) findViewById(R.id.ingredient_weight_input);
         newBeerOG = (EditText) findViewById(R.id.target_og_input);
         newBeerFG = (EditText) findViewById(R.id.target_fg_input);
         newBeerMashTemp = (EditText) findViewById(R.id.mash_temp_input);
@@ -63,7 +65,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
     public String dryHopNeeded(String days){
-        if (days.equals(0)){
+        if (days.equals("0")){
             return "No";
         }
         else{
@@ -101,7 +103,7 @@ public class AddActivity extends AppCompatActivity {
 
         Double doubleOG = Double.parseDouble(beerOG);
         Double doubleFG = Double.parseDouble(beerFG);
-        Double beerABV = (doubleOG - doubleFG) * 131.25;
+        Double beerABV = ((doubleOG - doubleFG) * 131.25) / 1000;
 
         beerDetails.put("Expected ABV: ", beerABV.toString());
 
