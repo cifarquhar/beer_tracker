@@ -17,4 +17,18 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="BeerTrackerTheme" parent="AppTheme" >
+        <item name="colorAccent">@android:color/holo_green_dark</item>
+        <item name="android:colorBackground">@android:color/background_light</item>
+    </style>
+
+    <style name="BeerTrackerTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="BeerTrackerTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="BeerTrackerTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
