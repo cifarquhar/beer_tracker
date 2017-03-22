@@ -91,6 +91,8 @@ public class BeerActivity extends AppCompatActivity {
         stepsString = extras.getString("beerSteps");
         beerObject = (Beer) extras.getSerializable("beerObject");
 
+        setTitle(beerObject.getName());
+
 
     }
 
