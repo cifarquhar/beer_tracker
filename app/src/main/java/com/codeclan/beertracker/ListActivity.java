@@ -63,8 +63,8 @@ public class ListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home, menu);
-        getMenuInflater().inflate(R.menu.menu_filter, menu);
         getMenuInflater().inflate(R.menu.menu_beer, menu);
+        getMenuInflater().inflate(R.menu.menu_filter, menu);
         getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
     }
