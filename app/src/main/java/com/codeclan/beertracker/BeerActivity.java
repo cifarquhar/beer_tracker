@@ -423,5 +423,5 @@ public class BeerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    
+
 }

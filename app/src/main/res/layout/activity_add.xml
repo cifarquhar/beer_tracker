@@ -21,20 +21,32 @@
         android:text="Fill in details below:"
         />
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textSize="20dp"
-        android:text="Beer Name:"/>
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/name_input"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="20dp"
+            android:text="Beer Name:"/>
+
+        <EditText
+            android:id="@+id/name_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:hint="Name"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:hint="Name"
-        />
+        android:orientation="horizontal">
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,9 +59,15 @@
         android:id="@+id/style_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="5dp"
         android:hint="Style"
         />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,9 +80,10 @@
         android:id="@+id/description_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="5dp"
         android:hint="Description"
         />
+
+        </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
