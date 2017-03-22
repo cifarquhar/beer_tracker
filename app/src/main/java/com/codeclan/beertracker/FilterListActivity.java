@@ -28,7 +28,7 @@ public class FilterListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.beer_list);
+        setContentView(R.layout.activity_filter_list);
 
         SharedPreferences sharedPref = getSharedPreferences(BEERLIST, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -37,7 +37,8 @@ public class FilterListActivity extends AppCompatActivity {
 
         Gson gson = new Gson();
 
-        TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>() {};
+        TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>() {
+        };
         beers = gson.fromJson(importedBeerList, beerArrayList.getType());
 
 
@@ -48,36 +49,39 @@ public class FilterListActivity extends AppCompatActivity {
 
         ArrayList<Beer> filteredBeers = new ArrayList<Beer>();
 
-        if (filterOn.equals("style")){
-            for (Beer beer : beers){
-                if (beer.getType().equals(filterFor)){
+        if (filterOn.equals("style")) {
+            for (Beer beer : beers) {
+                if (beer.getType().equals(filterFor)) {
                     filteredBeers.add(beer);
                 }
             }
-        }
-        else if (filterOn.equals("ingredient")){
-            for (Beer beer : beers){
-                for (String ingredient : beer.ingredients.keySet()){
-                    if (ingredient.equals(filterFor)){
+        } else if (filterOn.equals("ingredient")) {
+            for (Beer beer : beers) {
+                for (String ingredient : beer.ingredients.keySet()) {
+                    if (ingredient.equals(filterFor)) {
                         filteredBeers.add(beer);
                     }
                 }
             }
-        }
-        else if (filterOn.equals("conditioning")){
-            for (Beer beer : beers){
+        } else if (filterOn.equals("conditioning")) {
+            for (Beer beer : beers) {
                 Log.d("In For", beer.steps.toString());
-                if (beer.steps.get("Conditioning time (weeks): ").equals(filterFor)){
+                if (beer.steps.get("Conditioning time (weeks): ").equals(filterFor)) {
                     filteredBeers.add(beer);
                 }
             }
         }
 
 
-        BeerAdapter beerAdapter = new BeerAdapter(this, filteredBeers);
+        if (filteredBeers.size() == 0) {
+            TextView textview = (TextView) findViewById(R.id.filter_list_error_catch);
+            textview.setText("Nothing found matching that criteria");
+        } else {
+            BeerAdapter beerAdapter = new BeerAdapter(this, filteredBeers);
 
-        ListView listview = (ListView) findViewById(R.id.list);
-        listview.setAdapter(beerAdapter);
+            ListView listview = (ListView) findViewById(R.id.filter_list);
+            listview.setAdapter(beerAdapter);
+        }
     }
 
 
