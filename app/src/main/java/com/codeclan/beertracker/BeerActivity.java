@@ -25,6 +25,8 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import static com.codeclan.beertracker.ListActivity.BEERLIST;
+
 
 public class BeerActivity extends AppCompatActivity {
 
@@ -34,6 +36,8 @@ public class BeerActivity extends AppCompatActivity {
     Beer beerObject;
 
     ArrayList<Beer> favouritesList;
+
+    int indexToReplace;
 
 
 
@@ -318,11 +322,7 @@ public class BeerActivity extends AppCompatActivity {
 
         Log.d("In click", "Button clicked");
 
-//        Calendar calendar = Calendar.getInstance();
-
         CalendarView calendar = (CalendarView) findViewById(R.id.calendar);
-
-//        CalendarView calendar = new CalendarView(Context this);
 
         Log.d("In click", "Got calendar");
 
@@ -357,9 +357,40 @@ public class BeerActivity extends AppCompatActivity {
 
         Toast.makeText(BeerActivity.this, "Recipe started, end times calculated", Toast.LENGTH_SHORT).show();
 
-//        String selectedBeerDetails = selectedBeer.parseDetailsHash();
-//        String selectedBeerIngredients = selectedBeer.parseIngredientsHash();
-//        String selectedBeerSteps = selectedBeer.parseStepsHash();
+
+        SharedPreferences sharedPref = getSharedPreferences(BEERLIST, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        String importedBeerList = sharedPref.getString("beerList","");
+
+
+        Gson gson = new Gson();
+        TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>(){};
+        ArrayList<Beer> beerList = gson.fromJson(importedBeerList,beerArrayList.getType());
+
+
+
+        ArrayList<String> allBeerNames = new ArrayList<String>();
+        for (Beer beer : beerList) {
+            allBeerNames.add(beer.getName());
+        }
+
+        for (Beer beer : beerList) {
+            if (beer.getName().equals(beerObject.getName())) {
+                indexToReplace = beerList.indexOf(beer);
+            }
+        }
+
+        beerList.set(indexToReplace,beerObject);
+
+
+
+
+        editor.putString("beerList",gson.toJson(beerList));
+        editor.apply();
+
+
+
 
         Intent intent = new Intent(this, BeerActivity.class);
         intent.putExtra("beerDetails",beerObject.parseDetailsHash());
