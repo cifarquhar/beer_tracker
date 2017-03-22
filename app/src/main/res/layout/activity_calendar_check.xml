@@ -1,9 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.codeclan.beertracker.CalendarCheckActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Which date do you want to check?"/>
+
+
+    <RadioGroup
+        android:id="@+id/calendarCheckOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+        android:id="@+id/calendarCheckFermentation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="dateFilterClick"
+        android:textSize="20dp"
+        android:text="Fermentation completion"/>
+
+        <RadioButton
+            android:id="@+id/calendarCheckConditioning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="dateFilterClick"
+            android:textSize="20dp"
+            android:text="Conditioning completion"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/dateFilterButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="confirmDateFilterClick"
+        android:text="Check date"/>
+
+
+</LinearLayout>

@@ -336,7 +336,7 @@ public class BeerActivity extends AppCompatActivity {
         Log.d("In click", "Got times from object");
 
         Long convertedFermentationTime = TimeUnit.MILLISECONDS.convert(fermentationTime, TimeUnit.DAYS);
-        Long convertedConditioningTime = TimeUnit.MILLISECONDS.convert(conditioningTime,TimeUnit.DAYS);
+        Long convertedConditioningTime = TimeUnit.MILLISECONDS.convert(conditioningTime,TimeUnit.DAYS) * 7;
 
         Log.d("In click", "Converted times");
 
@@ -374,7 +374,10 @@ public class BeerActivity extends AppCompatActivity {
 
 
     public void checkClick (View view){
+        Intent intent = new Intent(this,CalendarCheckActivity.class);
+        intent.putExtra("beerObject",beerObject);
 
+        startActivity(intent);
     }
 
 

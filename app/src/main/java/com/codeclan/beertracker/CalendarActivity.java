@@ -18,10 +18,17 @@ public class CalendarActivity extends AppCompatActivity {
 
        calendar = (CalendarView) findViewById(R.id.calendar);
 
-//        Calendar calendar = Calendar.getInstance();
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        String buttonID = extras.getString("filterOn");
+        Beer beerObject = (Beer) extras.getSerializable("beerObject");
 
-//        Intent calIntent = new Intent(Intent.ACTION_INSERT);
-//        calIntent.setData(CalendarContract.Events.CONTENT_URI);
-//        startActivity(calIntent);
+        if (buttonID.equals("fermentation")){
+            calendar.setDate(Long.valueOf(beerObject.details.get("Fermentation completed")));
+        }
+        else if (buttonID.equals("conditioning")){
+            calendar.setDate(Long.valueOf(beerObject.details.get("Conditioning completed")));
+        }
+
     }
 }
