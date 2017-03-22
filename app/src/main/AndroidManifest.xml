@@ -27,7 +27,8 @@
         <activity android:name=".FavouritesActivity" />
         <activity android:name=".AddActivity" />
         <activity android:name=".FilterActivity" />
-        <activity android:name=".FilterListActivity"></activity>
+        <activity android:name=".FilterListActivity" />
+        <activity android:name=".CalendarActivity"></activity>
     </application>
 
 </manifest>
