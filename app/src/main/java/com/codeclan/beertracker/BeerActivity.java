@@ -3,6 +3,7 @@ package com.codeclan.beertracker;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,12 +16,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 public class BeerActivity extends AppCompatActivity {
@@ -307,6 +310,70 @@ public class BeerActivity extends AppCompatActivity {
         Intent intent = new Intent(this,ListActivity.class);
         startActivity(intent);
 
+    }
+
+    public void startClick (View view){
+
+        setContentView(R.layout.activity_calendar);
+
+        Log.d("In click", "Button clicked");
+
+//        Calendar calendar = Calendar.getInstance();
+
+        CalendarView calendar = (CalendarView) findViewById(R.id.calendar);
+
+//        CalendarView calendar = new CalendarView(Context this);
+
+        Log.d("In click", "Got calendar");
+
+        Long currentDate = calendar.getDate();
+
+        Log.d("In click", "Got date");
+
+        Long fermentationTime = Long.valueOf(beerObject.steps.get("Fermentation time (days)"));
+        Long conditioningTime = Long.valueOf(beerObject.steps.get("Conditioning time (weeks)"));
+
+        Log.d("In click", "Got times from object");
+
+        Long convertedFermentationTime = TimeUnit.MILLISECONDS.convert(fermentationTime, TimeUnit.DAYS);
+        Long convertedConditioningTime = TimeUnit.MILLISECONDS.convert(conditioningTime,TimeUnit.DAYS);
+
+        Log.d("In click", "Converted times");
+
+        Long completedFermentation = currentDate + convertedFermentationTime;
+        Long completedConditioning = currentDate + convertedConditioningTime;
+
+        Log.d("In click", "Calculated end times");
+
+        String completedFermentationString = String.valueOf(completedFermentation);
+        String completedConditioningString = String.valueOf(completedConditioning);
+
+        Log.d("In click", "Times to string");
+
+        beerObject.details.put("Fermentation completed",completedFermentationString);
+        beerObject.details.put("Conditioning completed",completedConditioningString);
+
+        Log.d("In click", "Times in hash");
+
+        Toast.makeText(BeerActivity.this, "Recipe started, end times calculated", Toast.LENGTH_SHORT).show();
+
+//        String selectedBeerDetails = selectedBeer.parseDetailsHash();
+//        String selectedBeerIngredients = selectedBeer.parseIngredientsHash();
+//        String selectedBeerSteps = selectedBeer.parseStepsHash();
+
+        Intent intent = new Intent(this, BeerActivity.class);
+        intent.putExtra("beerDetails",beerObject.parseDetailsHash());
+        intent.putExtra("beerIngredients",beerObject.parseIngredientsHash());
+        intent.putExtra("beerSteps",beerObject.parseStepsHash());
+        intent.putExtra("beerObject",beerObject);
+
+        startActivity(intent);
+
+
+    }
+
+
+    public void checkClick (View view){
 
     }
 

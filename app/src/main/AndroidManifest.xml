@@ -24,11 +24,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.codeclan.beertracker.ListActivity" />
         </activity>
-        <activity android:name=".FavouritesActivity" />
-        <activity android:name=".AddActivity" />
-        <activity android:name=".FilterActivity" />
-        <activity android:name=".FilterListActivity" />
-        <activity android:name=".CalendarActivity"></activity>
+        <activity
+            android:name=".FavouritesActivity"
+            android:label="Favourites" />
+        <activity
+            android:name=".AddActivity"
+            android:label="Add Recipe" />
+        <activity
+            android:name=".FilterActivity"
+            android:label="Search" />
+        <activity
+            android:name=".FilterListActivity"
+            android:label="Search Results" />
+        <activity android:name=".CalendarActivity" />
+        <activity android:name=".CalendarCheckActivity"></activity>
     </application>
 
 </manifest>

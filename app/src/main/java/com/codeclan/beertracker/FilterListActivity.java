@@ -66,7 +66,7 @@ public class FilterListActivity extends AppCompatActivity {
         } else if (filterOn.equals("conditioning")) {
             for (Beer beer : beers) {
                 Log.d("In For", beer.steps.toString());
-                if (beer.steps.get("Conditioning time (weeks): ").equals(filterFor)) {
+                if (beer.steps.get("Conditioning time (weeks)").equals(filterFor)) {
                     filteredBeers.add(beer);
                 }
             }

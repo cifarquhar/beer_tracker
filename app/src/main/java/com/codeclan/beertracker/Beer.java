@@ -86,10 +86,12 @@ public class Beer implements Serializable{
 
     public String parseDetailsHash(){
         String outputString = "";
-        for (String term: details.keySet()){
-            String value = details.get(term);
-            String lineToAdd =  "\"" + term + "\"" + ": " + value + "\n";
-            outputString = outputString + lineToAdd;
+        for (String term: details.keySet()) {
+            if (!term.equals("Fermentation completed") && !term.equals("Conditioning completed")) {
+                String value = details.get(term);
+                String lineToAdd = term + ": " + value + "\n";
+                outputString = outputString + lineToAdd;
+            }
         }
         return outputString;
     }
@@ -98,7 +100,7 @@ public class Beer implements Serializable{
         String outputString = "";
         for (String term: ingredients.keySet()){
             String value = ingredients.get(term);
-            String lineToAdd =  "\"" + term + "\"" + ": " + value + "\n";
+            String lineToAdd =  term +  ": " + value + "\n";
             outputString = outputString + lineToAdd;
         }
         return outputString;
@@ -108,7 +110,7 @@ public class Beer implements Serializable{
         String outputString = "";
         for (String term: steps.keySet()){
             String value = steps.get(term);
-            String lineToAdd =  "\"" + term + "\"" + ": " + value + "\n";
+            String lineToAdd = term + ": " + value + "\n";
             outputString = outputString + lineToAdd;
         }
         return outputString;

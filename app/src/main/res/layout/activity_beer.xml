@@ -65,4 +65,23 @@
         android:onClick="deleteClick"
         app:srcCompat="@android:drawable/ic_delete" />
 
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="130dp"
+        android:text="Start"
+        android:onClick="startClick"/>
+
+    <Button
+        android:id="@+id/check_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="80dp"
+        android:text="Check End Dates"
+        android:onClick="checkClick"/>
+
+
 </android.support.design.widget.CoordinatorLayout>
