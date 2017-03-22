@@ -65,7 +65,6 @@ public class ListActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_home, menu);
         getMenuInflater().inflate(R.menu.menu_filter, menu);
         getMenuInflater().inflate(R.menu.menu_beer, menu);
-        getMenuInflater().inflate(R.menu.menu_calendar, menu);
         getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
     }
@@ -92,11 +91,6 @@ public class ListActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_filter) {
             Intent intent = new Intent(this,FilterActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        else if (id == R.id.action_calendar) {
-            Intent intent = new Intent(this,CalendarActivity.class);
             startActivity(intent);
             return true;
         }

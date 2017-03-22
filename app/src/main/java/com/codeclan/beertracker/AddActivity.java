@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.NumberPicker;
@@ -74,6 +76,8 @@ public class AddActivity extends AppCompatActivity {
         String beerIngredientWeight = newBeerIngredientWeight.getText().toString();
 
         beerIngredients.put(beerIngredientName,beerIngredientWeight);
+
+        Toast.makeText(AddActivity.this,"Ingredient added!",Toast.LENGTH_LONG).show();
 
     }
 
@@ -167,5 +171,39 @@ public class AddActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this,ListActivity.class);
         startActivity(intent);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+        getMenuInflater().inflate(R.menu.menu_filter, menu);
+        getMenuInflater().inflate(R.menu.menu_beer, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.action_favourites) {
+            Intent intent = new Intent(this,FavouritesActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        else if (id == R.id.action_home) {
+            Intent intent = new Intent(this,ListActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        else if (id == R.id.action_filter) {
+            Intent intent = new Intent(this,FilterActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
