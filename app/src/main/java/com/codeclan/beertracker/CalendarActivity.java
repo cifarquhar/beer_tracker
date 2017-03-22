@@ -32,6 +32,7 @@ public class CalendarActivity extends AppCompatActivity {
             calendar.setDate(Long.valueOf(beerObject.details.get("Conditioning completed")));
         }
 
+
     }
 
     @Override

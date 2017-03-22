@@ -26,7 +26,12 @@
         </activity>
         <activity
             android:name=".FavouritesActivity"
-            android:label="Favourites" />
+            android:label="Favourites"
+            android:parentActivityName=".ListActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.codeclan.beertracker.ListActivity" />
+        </activity>
         <activity
             android:name=".AddActivity"
             android:label="Add Recipe" />
@@ -37,7 +42,8 @@
             android:name=".FilterListActivity"
             android:label="Search Results" />
         <activity android:name=".CalendarActivity"
-            android:label="Calendar"/>
+            android:label="Calendar"
+           />
         <activity android:name=".CalendarCheckActivity"
             android:label="Calendar"></activity>
     </application>

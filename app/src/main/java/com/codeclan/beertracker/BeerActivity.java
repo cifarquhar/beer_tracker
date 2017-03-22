@@ -175,8 +175,6 @@ public class BeerActivity extends AppCompatActivity {
         };
         favouritesList = gson.fromJson(favourites, beerArrayList.getType());
 
-//        Log.d("BeforeAdd",favouritesList.toString());
-
         ArrayList<String> favouriteBeerNames = new ArrayList<String>();
         for (Beer beer : favouritesList) {
             favouriteBeerNames.add(beer.getName());
@@ -187,9 +185,6 @@ public class BeerActivity extends AppCompatActivity {
         } else {
 
             favouritesList.add(beerObject);
-
-//        Log.d("AfterAdd",favouritesList.toString());
-
 
             editor.putString("favourites", gson.toJson(favouritesList));
             editor.apply();
@@ -205,7 +200,6 @@ public class BeerActivity extends AppCompatActivity {
         String favourites = sharedPref.getString("favourites","Removing something...");
 
 
-
         Gson gson = new Gson();
         TypeToken<ArrayList<Beer>> beerArrayList = new TypeToken<ArrayList<Beer>>(){};
         favouritesList = gson.fromJson(favourites,beerArrayList.getType());
@@ -219,19 +213,11 @@ public class BeerActivity extends AppCompatActivity {
         ArrayList<Beer> newFavourites = new ArrayList<Beer>();
 
         if (favouriteBeerNames.contains(beerObject.getName())){
-            Log.d("In Loop - object list",favouritesList.toString());
-            Log.d("In Loop - name list",favouriteBeerNames.toString());
-            Log.d("In Loop - object name",beerObject.getName());
             for (Beer beer : favouritesList){
-                Log.d("In For - object list",favouritesList.toString());
                 if (!beer.getName().equals(beerObject.getName())){
-                    Log.d("In If - name", beer.getName());
-                    Log.d("In If - obj name", beerObject.getName());
                     newFavourites.add(beer);
-                    Log.d("2nd In If", favouritesList.toString());
                 }
             }
-            Log.d("In Loop - object list",favouritesList.toString());
 
             editor.putString("favourites",gson.toJson(newFavourites));
             editor.apply();
@@ -322,40 +308,24 @@ public class BeerActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_calendar);
 
-        Log.d("In click", "Button clicked");
-
         CalendarView calendar = (CalendarView) findViewById(R.id.calendar);
 
-        Log.d("In click", "Got calendar");
-
         Long currentDate = calendar.getDate();
-
-        Log.d("In click", "Got date");
 
         Long fermentationTime = Long.valueOf(beerObject.steps.get("Fermentation time (days)"));
         Long conditioningTime = Long.valueOf(beerObject.steps.get("Conditioning time (weeks)"));
 
-        Log.d("In click", "Got times from object");
-
         Long convertedFermentationTime = TimeUnit.MILLISECONDS.convert(fermentationTime, TimeUnit.DAYS);
         Long convertedConditioningTime = TimeUnit.MILLISECONDS.convert(conditioningTime,TimeUnit.DAYS) * 7;
-
-        Log.d("In click", "Converted times");
 
         Long completedFermentation = currentDate + convertedFermentationTime;
         Long completedConditioning = currentDate + convertedConditioningTime;
 
-        Log.d("In click", "Calculated end times");
-
         String completedFermentationString = String.valueOf(completedFermentation);
         String completedConditioningString = String.valueOf(completedConditioning);
 
-        Log.d("In click", "Times to string");
-
         beerObject.details.put("Fermentation completed",completedFermentationString);
         beerObject.details.put("Conditioning completed",completedConditioningString);
-
-        Log.d("In click", "Times in hash");
 
         Toast.makeText(BeerActivity.this, "Recipe started, end times calculated", Toast.LENGTH_SHORT).show();
 
@@ -453,7 +423,5 @@ public class BeerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
+    
 }
