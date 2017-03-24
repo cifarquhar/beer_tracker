@@ -13,7 +13,8 @@
     <TextView
         android:id="@+id/favourite_error_catch"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="20dp"/>
 
     <ListView
         android:id="@+id/favourite_list"
